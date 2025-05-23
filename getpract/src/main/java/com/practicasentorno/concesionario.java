@@ -20,4 +20,7 @@ public class concesionario {
         System.out.println("IVA: " + iva);  
         System.out.println("Precio con IVA: " + getPrecioIva());
     }
+    public void StockBase(){
+        System.out.println();
+    }
 }
