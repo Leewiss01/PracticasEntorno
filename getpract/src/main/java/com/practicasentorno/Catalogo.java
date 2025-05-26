@@ -5,38 +5,40 @@ import java.util.Scanner;
 
 public class Catalogo {
 
-    private ArrayList<concesionario> coches = new ArrayList<>();
+    private ArrayList<Concesionario> coches = new ArrayList<>();
+    private Scanner sc = new Scanner(System.in); // Instancia única de Scanner
 
     public static void main(String[] args) {
         new Catalogo().principal();
     }
 
     public int pideOpcion() {
-        Scanner sc = new Scanner(System.in);
         System.out.print(
-                "----------------------------\nOpciones: \n1. Añadir coche \n2. Ver lista de coches \n3. Salir \nSeleccione una opción: \n----------------------------\n");
-        return (sc.nextInt());
+                "----------------------------\nOpciones: \n1. Añadir coche \n2. Ver lista de coches\n3. Coches VIP \n4. Salir \nSeleccione una opción: \n----------------------------\n");
+        return sc.nextInt(); // Usar la instancia única
     }
 
     public void añadirVehiculo() {
-        Scanner sc = new Scanner(System.in);
         System.out.print("Introduce el precio del coche: ");
         int precio = sc.nextInt();
         System.out.print("Introduce el IVA del coche: ");
         int iva = sc.nextInt();
+        sc.nextLine(); // Consumir el salto de línea pendiente
         System.out.print("Introduce el modelo del coche: ");
-        String modelo = sc.next();
+        String modelo = sc.nextLine(); // Cambiar a nextLine para leer cadenas completas
+        System.out.println("Vehículo añadido correctamente.");
 
-        concesionario coche = new concesionario(precio, iva, modelo);
+        Concesionario coche = new Concesionario(precio, iva, modelo);
 
         coches.add(coche);
     }
 
     public void mostrarVehiculos() {
         System.out.println("Lista de coches:");
-        for (concesionario coche : coches) {
+        for (Concesionario coche : coches) {
             coche.mostrarInformacion();
         }
+
     }
 
     public void principal() {
@@ -52,6 +54,10 @@ public class Catalogo {
                     mostrarVehiculos();
                     break;
                 case 3:
+                    System.out.println("Mostrando coches VIP:");
+                    Concesionario.stockBase(); // Llamada directa al método estático
+                    break;
+                case 4:
                     System.out.println("Saliendo del programa...");
                     exit = true;
                     break;
