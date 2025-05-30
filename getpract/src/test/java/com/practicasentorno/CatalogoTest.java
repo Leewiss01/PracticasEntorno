@@ -18,12 +18,4 @@ public class CatalogoTest {
  
         assertTrue(opcion >= 1 && opcion <= 3);
     }
-    @Test
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Concesionario that = (Concesionario) obj;
-        return modelo.equals(that.modelo);
-    }
 }
